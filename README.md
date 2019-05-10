@@ -96,3 +96,49 @@ Fake users for leaderBoard.
     "message": "Added 20 users with fake attributes"
 }
 ```
+
+# LeaderBoard
+
+Returns fake data about the latest winners.
+
+**Fill**
+
+  Fills the winners database with fake data(wonMoney - randomly up to 500 00, date - randomly last year, user - from existing).
+
+  [POST] /api/v1/leaderboard/fill
+  
+*  **URL Headers**
+   
+   **Required:**
+   
+    'X-App-Key': token
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ message: 'Fill history for random 20 users' }`
+   OR
+  * **Code:** 200 <br />
+    **Content:** `{ message: 'No users' }`
+ 
+* **Error Response:**
+
+  * **Code:** 403 UNAUTHORIZED <br />
+    **Content:** `{ message : "No application token" }`
+
+* **Sample Call:**
+
+```
+  $.ajax({
+      url: "/api/v1/leaderboard/fill",
+      dataType: "json",
+      type : "POST"
+    });
+```
+
+* **Sample Response:**
+```
+{
+    "message": "Fill history for random 20 users"
+}
+```
