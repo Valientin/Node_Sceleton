@@ -142,3 +142,79 @@ Returns fake data about the latest winners.
     "message": "Fill history for random 20 users"
 }
 ```
+
+
+**Get history**
+
+  [GET] /api/v1/leaderboard/history
+  
+*  **URL Headers**
+   
+   **Required:**
+   
+    'X-App-Key': token
+  
+*  **URL Query Params**
+   `startDate=[Date] - default one month ago`
+   `endDate=[Date] - default current date`
+   `type=[only 'all' value] - if type equal 'all' then ignored startDate and endDate`
+   `limit=[Number] - max count of rows in response(default 25)`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```{ "leaders": [
+        {
+            "firstName": "Ethel",
+            "userName": "Flavie.V****",
+            "link": "http://localhost:3000",
+            "wonMoney": 102
+        }
+    ] }```
+ 
+* **Error Response:**
+
+  * **Code:** 403 UNAUTHORIZED <br />
+    **Content:** `{ message : "No application token" }`
+
+* **Sample Call:**
+
+```
+  $.ajax({
+      url: "/api/v1/leaderboard/history",
+      dataType: "json",
+      data: {
+         startDate: "01.01.2019",
+         endDate: "01.02.2019",
+         limit: 25
+      },
+      type : "GET"
+    });
+```
+
+* **Sample Response:**
+```
+{
+    "leaders": [
+        {
+            "firstName": "Misael",
+            "userName": "Eli**",
+            "link": "http://localhost:3000",
+            "wonMoney": 495327
+        },
+        {
+            "firstName": "Nikita",
+            "userName": "Annalis***",
+            "link": "http://localhost:3000",
+            "wonMoney": 493230
+        },
+        {
+            "firstName": "Everette",
+            "userName": "Kaia_Mill****",
+            "link": "http://localhost:3000",
+            "wonMoney": 354504
+        },
+        ...
+}
+```
