@@ -43,10 +43,7 @@ Registers the application in the system and assigns it a token that will be rive
       data: {
          name: "Uran"
       },
-      type : "POST",
-      success : function(r) {
-        console.log(r);
-      }
+      type : "POST"
     });
 ```
 
@@ -54,5 +51,48 @@ Registers the application in the system and assigns it a token that will be rive
 ```
 {
     "token": "tpygGwGXFLHhc1l7Xc56kZc8TYKWe1bcGfScW7Ge0Ym"
+}
+```
+
+# Users
+
+Fake users for leaderBoard.
+
+**Fill**
+
+  Added 20 users to database with fake attributes(firstName, userName).
+
+  [POST] /api/v1/users/fill
+  
+*  **URL Headers**
+   
+   **Required:**
+   
+    'X-App-Key': token
+  
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{  message: 'Added 20 users with fake attributes' }`
+ 
+* **Error Response:**
+
+  * **Code:** 403 UNAUTHORIZED <br />
+    **Content:** `{ message : "No application token" }`
+
+* **Sample Call:**
+
+```
+  $.ajax({
+      url: "/api/v1/users/fill",
+      dataType: "json",
+      type : "POST"
+    });
+```
+
+* **Sample Response:**
+```
+{
+    "message": "Added 20 users with fake attributes"
 }
 ```
