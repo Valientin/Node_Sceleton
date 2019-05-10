@@ -146,6 +146,8 @@ Returns fake data about the latest winners.
 
 **Get history**
 
+  Returned fake leaderBoard.
+
   [GET] /api/v1/leaderboard/history
   
 *  **URL Headers**
@@ -155,23 +157,26 @@ Returns fake data about the latest winners.
     'X-App-Key': token
   
 *  **URL Query Params**
-   `startDate=[Date] - default one month ago`
-   `endDate=[Date] - default current date`
-   `type=[only 'all' value] - if type equal 'all' then ignored startDate and endDate`
+
+   `startDate=[Date] - default one month ago`<br>
+   `endDate=[Date] - default current date`<br>
+   `type=[only 'all' value] - if type equal 'all' then ignored startDate and endDate` <br>
    `limit=[Number] - max count of rows in response(default 25)`
 
 * **Success Response:**
 
   * **Code:** 200 <br />
     **Content:** 
-    ```{ "leaders": [
+    ```
+    { "leaders": [
         {
             "firstName": "Ethel",
             "userName": "Flavie.V****",
             "link": "http://localhost:3000",
             "wonMoney": 102
         }
-    ] }```
+    ] }
+    ```
  
 * **Error Response:**
 
@@ -216,5 +221,80 @@ Returns fake data about the latest winners.
             "wonMoney": 354504
         },
         ...
+}
+```
+
+**Get latest winners**
+
+  Returned fake winners.
+
+  [GET] /api/v1/leaderboard/latest
+  
+*  **URL Headers**
+   
+   **Required:**
+   
+    'X-App-Key': token
+  
+*  **URL Query Params**
+
+   `count=[Number] - count of returned faked winners`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+    ```
+    { "winners": [
+        {
+            "firstName": "Katlynn",
+            "userName": "Dortha_Schro******",
+            "link": "http://localhost:3000",
+            "wonMoney": 236
+        }
+    ]
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 403 UNAUTHORIZED <br />
+    **Content:** `{ message : "No application token" }`
+
+* **Sample Call:**
+
+```
+  $.ajax({
+      url: "/api/v1/leaderboard/latest",
+      dataType: "json",
+      data: {
+         count: "5"
+      },
+      type : "GET"
+    });
+```
+
+* **Sample Response:**
+```
+{
+    "winners": [
+        {
+            "firstName": "Monserrate",
+            "userName": "Rosalyn_Mar******",
+            "link": "http://localhost:3000",
+            "wonMoney": 45
+        },
+        {
+            "firstName": "Jody",
+            "userName": "Queeni***",
+            "link": "http://localhost:3000",
+            "wonMoney": 43
+        },
+        {
+            "firstName": "Brycen",
+            "userName": "Jennif***",
+            "link": "http://localhost:3000",
+            "wonMoney": 291
+        }
+    ]
 }
 ```
